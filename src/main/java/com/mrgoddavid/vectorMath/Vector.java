@@ -7,7 +7,7 @@ package com.mrgoddavid.vectorMath;
  * @author David Liu.
  * @since 3/16/2026
  */
-public interface Vector2<T> {
+public interface Vector<T> {
 
     /**
      * Performs entry addition of two vectors.
@@ -119,7 +119,7 @@ public interface Vector2<T> {
      * <p>Postcondition: calculate the distance between itself and the second vector.</p>
      *
      * @param second vector that is not null.
-     * @return
+     * @return the distance between itself and the second vector.
      */
     double distance(T second);
 
@@ -180,5 +180,106 @@ public interface Vector2<T> {
      */
     T sign();
 
+    /**
+     * The entrywise minimum of itself and the second vector.
+     * <p>Precondition: second vector is not null.</p>
+     * <p>Postcondition: return a new vector that contains entrywise minimum of itself and the second vector.</p>
+     *
+     * @param second vector that is not null.
+     * @return a new vector that contains entrywise minimum of itself and the second vector
+     */
     T minimum(T second);
+
+    /**
+     * The entrywise maximum of itself and the second vector.
+     * <p>Precondition: second vector is not null.</p>
+     * <p>Postcondition: return a new vector that contains entrywise maximum of itself and the second vector.</p>
+     *
+     * @param second vector that is not null.
+     * @return a new vector that contains entrywise maximum of itself and the second vector
+     */
+    T maximum(T second);
+
+    /**
+     * Rounds itself entrywise down to the nearest integer.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: return a new vector with its each component entrywise down to the nearest integer. </p>
+     *
+     * @return a new vector with its each component entrywise down to the nearest integer.
+     */
+    T floor();
+
+    /**
+     * Rounds itself entrywise up to the nearest integer.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: return a new vector with its each component entrywise up to the nearest integer. </p>
+     *
+     * @return a new vector with its each component entrywise up to the nearest integer.
+     */
+    T ceil();
+
+    /**
+     * Returns the fractional part of the value entrywise.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: returns the fractional part of the value entrywise.</p>
+     *
+     * @return the fractional part of the value entrywise.
+     */
+    T fraction();
+
+    /**
+     * The entrywise modulo of itself by the second vector.
+     * <p>Precondition: second vector is not null.</p>
+     * <p>Postcondition: returns the entrywise modulo of itself by the second vector.</p>
+     *
+     * @param second vector that is not null.
+     * @return the entrywise modulo of itself by the second vector.
+     */
+    T modulo(T second);
+
+    /**
+     * The entrywise output of a value between Min and Max based on the absolute difference between the input value
+     * and the nearest integer multiple of Max less than the value.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: returns a new vector that is entrywise wrapped for each its component.</p>
+     *
+     * @return a new vector that is entrywise wrapped for each its component.
+     */
+    T wrap();
+
+    /**
+     * The result of rounding itself to the largest integer multiple of B less than or equal itself.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: returns a new vector that is entrywise snapped for each its component.</p>
+     *
+     * @return a new vector that is entrywise snapped for each its component.
+     */
+    T snap();
+
+    /**
+     * The entrywise of sine of itself.
+     * <p>Precondition: none</p>
+     * <p>Postcondition: calculate the entrywise of sine of its component</p>
+     *
+     * @return the entrywise of sine of itself.
+     */
+    T sine();
+
+    /**
+     * The entrywise of cosine of itself.
+     * <p>Precondition: none</p>
+     * <p>Postcondition: calculate the entrywise of cosine of its component</p>
+     *
+     * @return the entrywise of cosine of itself.
+     */
+    T cosine();
+
+    /**
+     * The entrywise of tangent of itself.
+     * <p>Precondition: none</p>
+     * <p>Postcondition: calculate the entrywise of tangent of its component</p>
+     *
+     * @return the entrywise of tangent of itself.
+     */
+    T tangent();
 }
