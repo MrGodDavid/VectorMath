@@ -1,0 +1,184 @@
+package com.mrgoddavid.vectorMath;
+
+/**
+ * Interface of custom vector class. Define the operation of two-dimensional vector.
+ *
+ * @param <T> data type of two-dimensional vector.
+ * @author David Liu.
+ * @since 3/16/2026
+ */
+public interface Vector2<T> {
+
+    /**
+     * Performs entry addition of two vectors.
+     * <p>Precondition: second vector is not null.</p>
+     * <p>Postcondition: returns the sum of two vectors.</p>
+     *
+     * @param second vector that is not null.
+     * @return the sum of two vectors.
+     */
+    T add(T second);
+
+    /**
+     * Performs entry subtraction of two vectors.
+     * <p>Precondition: second vector is not null.</p>
+     * <p>Postcondition: returns the difference between two vectors.</p>
+     *
+     * @param second vector that is not null.
+     * @return the difference between two vectors.
+     */
+    T subtract(T second);
+
+    /**
+     * Performs entry multiplication of two vectors.
+     * <p>Precondition: second vector is not null.</p>
+     * <p>Postcondition: returns the product of two vectors.</p>
+     *
+     * @param second vector that is not null.
+     * @return the product of two vectors.
+     */
+    T multiply(T second);
+
+    /**
+     * Performs entry division of two vectors.
+     * <p>Precondition: second vector is not null and its component does not contain 0.</p>
+     * <p>Postcondition: returns the quotient of two vectors.</p>
+     *
+     * @param second vector that is not null.
+     * @return the quotient of two vectors.
+     */
+    T divide(T second);
+
+    /**
+     * Performs entry multiplication and then addition of a vector itself.
+     * <p>Precondition: multiplier vector and adder vector are not null.</p>
+     * <p>Postcondition: returns the vector that is  multiplied multiplier vector and by  of two vectors.</p>
+     *
+     * @param multiplier vector that is not null.
+     * @param adder      vector that is not null.
+     * @return the vector that is  multiplied multiplier vector and by  of two vectors.
+     */
+    T multiply_add(T multiplier, T adder);
+
+    /**
+     * Performs the cross product of this vector to the second vector.
+     * <p>Precondition: second input vector is not null.</p>
+     * <p>Postcondition: calculate the cross product of itself to the second input vector.</p>
+     *
+     * @param second vector that is not null.
+     * @return the cross product of itself to the second input vector.
+     */
+    double cross_product(T second);
+
+    /**
+     * Project itself on the second vector.
+     * <p>Precondition: second input vector in not null.</p>
+     * <p>Postcondition: calculate the projection vector of the second vector.</p>
+     *
+     * @param second vector that is not null.
+     * @return the projection vector of the second vector.
+     */
+    T project(T second);
+
+    /**
+     * Reflect itself around the normal of the second input vector.
+     * <p>Precondition: second input vector is not null and itself does not need to be normalized.</p>
+     * <p>Postcondition: calculate the reflected </p>
+     *
+     * @param second vector that is not null.
+     * @param ior    index of reflection of medium.
+     * @return the reflected vector around the normal of the second vector.
+     */
+    T reflect(T second, float ior);
+
+    /**
+     * Orients a vector A (itself) to point away from a surface B as defined by its normal C.
+     * Computes (dot(incident, reference) < 0) ? A : -A)
+     * <p>Precondition: incident vector and reference vector are not null.</p>
+     * <p>Postcondition: calculate the orientation of vector.</p>
+     *
+     * @param incident  the vector being checked and itself is not null.
+     * @param reference the surface normal used to determine the orientation and itself is not null.
+     * @return the calculated vector that is either flipped or not.
+     */
+    T faceForward(T incident, T reference);
+
+    /**
+     * Calculate the dot product of two vectors.
+     * <p>Precondition: second vector is not null.</p>
+     * <p>Postcondition: calculate the dot product of itself and the second vector.</p>
+     *
+     * @param second vector that is not null.
+     * @return the dot product of itself and the second vector.
+     */
+    double dot_product(T second);
+
+    /**
+     * Calculate the distance between two points are each represented by a 2-d vector.
+     * <p>Precondition: second vector is not null.</p>
+     * <p>Postcondition: calculate the distance between itself and the second vector.</p>
+     *
+     * @param second vector that is not null.
+     * @return
+     */
+    double distance(T second);
+
+    /**
+     * Calculate the length/magnitude of the vector.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: calculate the length of itself.</p>
+     *
+     * @return the length of itself.
+     */
+    double length();
+
+    /**
+     * Entry scale each component by a scale factor.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: calculate the scaled vector.</p>
+     *
+     * @param scale scaling factor.
+     * @return the result of multiplying itself by the scalar input <code>scale</code>.
+     */
+    T scale(double scale);
+
+    /**
+     * Calculate the vector that is the normalized version of itself.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: calculate the normalized vector.</p>
+     *
+     * @return the normalized vector.
+     */
+    T normalize();
+
+    /**
+     * The entrywise absolute value of itself.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: The entrywise absolute value of itself.</p>
+     *
+     * @return a new vector2 that contains the entrywise absolute value of itself.
+     */
+    T absolute();
+
+    /**
+     * The entrywise power operator where the Base raised to the power of Exponent.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: The entrywise power operator where the Base raised to the power of Exponent.</p>
+     *
+     * @param exp the power exponent.
+     * @return a new vector2 that contains the entrywise power operator where the Base raised to the power of Exponent.
+     */
+    T power(double exp);
+
+    /**
+     * Extracts the sign of the input value. All positive numbers will output 1.0. All negative numbers will output -1.0.
+     * And 0.0 will output 0.0.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: Extract the sign of each component.</p>
+     *
+     * @return a new vector that represents the sign of each component value.
+     */
+    T sign();
+
+    T minimum(T second);
+}
