@@ -1,12 +1,14 @@
 package com.mrgoddavid.vectorMath;
 
+import java.io.Serializable;
+
 /**
  * Custom 2d vector class. Parameters are double variable.
  *
  * @author Mr. GodDavid.
  * @since 3/16/2026
  */
-public class Vector2d implements Vector<Vector2d> {
+public class Vector2d implements Vector<Vector2d>, Comparable<Vector2d>, Serializable {
 
     private double x;
     private double y;
@@ -135,16 +137,15 @@ public class Vector2d implements Vector<Vector2d> {
      * <p>Postcondition: calculate the reflected </p>
      *
      * @param second vector that is not null.
-     * @param ior    index of reflection of medium.
      * @return the reflected vector around the normal of the second vector.
      */
     @Override
-    public Vector2d reflect(Vector2d second, float ior) {
+    public Vector2d reflect(Vector2d second) {
         if (second.length() == 0) return new Vector2d();
         Vector2d n = second.normalize();
         double dotProduct = dot_product(n);
         Vector2d a = second.scale(dotProduct * 2);
-        return this.subtract(a).scale(ior);
+        return this.subtract(a);
     }
 
     /**
@@ -159,7 +160,7 @@ public class Vector2d implements Vector<Vector2d> {
      */
     @Override
     public Vector2d faceForward(Vector2d incident, Vector2d reference) {
-        return null;
+        return (incident.dot_product(reference) < 0) ? new Vector2d(this) : new Vector2d(this.scale(-1d));
     }
 
     /**
@@ -252,7 +253,7 @@ public class Vector2d implements Vector<Vector2d> {
      */
     @Override
     public Vector2d power(double exp) {
-        return  new Vector2d(Math.pow(x, exp), Math.pow(y, exp));
+        return new Vector2d(Math.pow(x, exp), Math.pow(y, exp));
     }
 
     /**
@@ -329,7 +330,7 @@ public class Vector2d implements Vector<Vector2d> {
      */
     @Override
     public Vector2d fraction() {
-        return null;
+        return this.subtract(this.floor());
     }
 
     /**
@@ -351,11 +352,15 @@ public class Vector2d implements Vector<Vector2d> {
      * <p>Precondition: none.</p>
      * <p>Postcondition: returns a new vector that is entrywise wrapped for each its component.</p>
      *
+     * @param minimum  minimum threshold.
+     * @param maximum: maximum threshold.
      * @return a new vector that is entrywise wrapped for each its component.
      */
     @Override
-    public Vector2d wrap() {
-        return null;
+    public Vector2d wrap(Vector2d minimum, Vector2d maximum) {
+        Vector2d v1 = this.subtract(minimum);
+        Vector2d range = maximum.subtract(minimum);
+        return this.subtract(range.multiply(v1.divide(range)).floor());
     }
 
     /**
@@ -366,8 +371,8 @@ public class Vector2d implements Vector<Vector2d> {
      * @return a new vector that is entrywise snapped for each its component.
      */
     @Override
-    public Vector2d snap() {
-        return null;
+    public Vector2d snap(Vector2d second) {
+        return this.divide(second).floor().multiply(second);
     }
 
     /**
@@ -423,16 +428,24 @@ public class Vector2d implements Vector<Vector2d> {
         return "[" + x + ", " + y + "]";
     }
 
-    public void set(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
     public double getX() {
         return x;
     }
 
     public double getY() {
         return y;
+    }
+
+    @Override
+    public int compareTo(Vector2d o) {
+        if (this.x != o.getX()) {
+            return Double.compare(x, o.getX());
+        }
+        if (this.y != o.getY()) {
+            return Double.compare(this.y, o.getY());
+        }
+        return (this.x == o.getX() && this.y == o.getY())
+                ? 0
+                : Double.compare(this.length(), o.length());
     }
 }

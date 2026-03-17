@@ -86,10 +86,9 @@ public interface Vector<T> {
      * <p>Postcondition: calculate the reflected </p>
      *
      * @param second vector that is not null.
-     * @param ior    index of reflection of medium.
      * @return the reflected vector around the normal of the second vector.
      */
-    T reflect(T second, float ior);
+    T reflect(T second);
 
     /**
      * Orients a vector A (itself) to point away from a surface B as defined by its normal C.
@@ -243,18 +242,21 @@ public interface Vector<T> {
      * <p>Precondition: none.</p>
      * <p>Postcondition: returns a new vector that is entrywise wrapped for each its component.</p>
      *
+     * @param minimum  minimum threshold.
+     * @param maximum: maximum threshold.
      * @return a new vector that is entrywise wrapped for each its component.
      */
-    T wrap();
+    T wrap(T minimum, T maximum);
 
     /**
      * The result of rounding itself to the largest integer multiple of B less than or equal itself.
      * <p>Precondition: none.</p>
      * <p>Postcondition: returns a new vector that is entrywise snapped for each its component.</p>
      *
+     * @param second that is not null.
      * @return a new vector that is entrywise snapped for each its component.
      */
-    T snap();
+    T snap(T second);
 
     /**
      * The entrywise of sine of itself.
