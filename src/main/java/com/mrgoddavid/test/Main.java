@@ -1,4 +1,4 @@
-package com.mrgoddavid.vectorMath;
+package com.mrgoddavid.test;
 
 public class Main {
 
