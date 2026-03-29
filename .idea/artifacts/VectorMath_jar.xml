@@ -2,7 +2,7 @@
   <artifact type="jar" name="VectorMath:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/VectorMath_jar</output-path>
     <root id="archive" name="VectorMath.jar">
-      <element id="module-output" name="VectorMath" />
+      <element id="module-output" name="Calculus" />
     </root>
   </artifact>
 </component>
